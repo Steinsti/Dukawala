@@ -3,11 +3,14 @@ package com.steinsti.dukawala.data
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.steinsti.dukawala.data.dao.ProductDao
+import com.steinsti.dukawala.data.dao.TransactionDao
 import com.steinsti.dukawala.data.entity.Product
+import com.steinsti.dukawala.data.entity.Transaction
 
-@Database(entities = [Product::class], version = 1, exportSchema = false)
+@Database(entities = [Product::class, Transaction::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
+    abstract fun transactionDao(): TransactionDao
 
     companion object {
         @Volatile

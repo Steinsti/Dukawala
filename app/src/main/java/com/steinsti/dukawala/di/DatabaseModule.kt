@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.steinsti.dukawala.data.AppDatabase
 import com.steinsti.dukawala.data.dao.ProductDao
+import com.steinsti.dukawala.data.dao.TransactionDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,11 +23,18 @@ object DatabaseModule {
             context,
             AppDatabase::class.java,
             "dukawala_database"
-        ).build()
+        )
+        .fallbackToDestructiveMigration(dropAllTables = true) // Handle version changes during development
+        .build()
     }
 
     @Provides
     fun provideProductDao(database: AppDatabase): ProductDao {
         return database.productDao()
+    }
+
+    @Provides
+    fun provideTransactionDao(database: AppDatabase): TransactionDao {
+        return database.transactionDao()
     }
 }

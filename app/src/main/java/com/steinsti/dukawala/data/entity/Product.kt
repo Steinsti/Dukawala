@@ -7,8 +7,9 @@ import androidx.room.PrimaryKey
 data class Product(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
+    val category: String,  // e.g., "Beverages"
     val quantity: Int,
-    val price: Double,
-    val barcode: String? = null,      // Optional for future scanner
-    val category: String? = null      // e.g. "Beverages", "Snacks"
+    val buyingPrice: Double,
+    val sellingPrice: Double,
+    val barcode: String? = null
 )
