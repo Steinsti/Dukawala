@@ -20,6 +20,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.steinsti.dukawala.ui.theme.DukaWalaTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 // Define the navigation routes
 sealed class Screen(val route: String, val label: String, val icon: ImageVector) {
@@ -29,6 +30,7 @@ sealed class Screen(val route: String, val label: String, val icon: ImageVector)
     object Reports : Screen("reports", "Reports", Icons.Default.BarChart)
 }
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +69,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = Screen.Home.route,
                         modifier = Modifier.padding(innerPadding)
                     ) {
-                        composable(Screen.Home.route) { HomeScreen() }  // Your existing welcome screen
+                        composable(Screen.Home.route) { HomeScreen() }
                         composable(Screen.Pos.route) { PosScreen() }
                         composable(Screen.Inventory.route) { InventoryScreen() }
                         composable(Screen.Reports.route) { ReportsScreen() }
@@ -77,4 +79,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
